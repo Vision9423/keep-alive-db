@@ -24,7 +24,11 @@ export default async function handler(req, res) {
   // --- 1. ЗАПИСЬ В MYSQL (Изолированный блок) ---
   try {
     const mysqlConnection = await mysql.createConnection({
-      // ... настройки MySQL
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
     });
     
     await mysqlConnection.execute("INSERT INTO daily_check (cur_datetime) VALUES (NOW())");
