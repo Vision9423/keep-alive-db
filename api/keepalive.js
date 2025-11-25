@@ -1,5 +1,3 @@
-// вместо import
-// import mysql from "mysql2/promise";
 const mysql = require('mysql2/promise');
 
 export default async function handler(req, res) {
@@ -16,7 +14,7 @@ export default async function handler(req, res) {
       database: process.env.DB_NAME
     });
 
-    await db.execute("INSERT INTO keepalive (ts) VALUES (NOW())");
+    await db.execute("INSERT INTO daily_check (cur_datetime) VALUES (NOW())");
     await db.end();
 
     res.send("ok");
