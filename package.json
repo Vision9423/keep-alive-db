@@ -1,5 +1,8 @@
 {
+  "name": "daily-check-vercel",
+  "version": "1.0.0",
+  "main": "index.js",
   "dependencies": {
-    "mysql2": "^3.15.3"
+    "mysql2": "^3.5.2"
   }
 }
