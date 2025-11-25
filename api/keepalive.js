@@ -30,8 +30,17 @@ export default async function handler(req, res) {
 
   // --- 2. ЗАПИСЬ В POSTGRESQL (Изолированный блок) ---
   try {
-    const connectionString = process.env.DATABASE_URL;
-    const sql = postgres(connectionString);
+    const sql = postgres({
+      host: process.env.PG_HOST,
+      port: Number(process.env.PG_PORT),
+      database: process.env.PG_NAME,
+      username: process.env.PG_USER,
+      password: process.env.PG_PASSWORD,
+      ssl: {
+        rejectUnauthorized: false
+      }
+    });
+
     await sql`
     INSERT INTO public.mytable (created_at)
     VALUES (NOW())
