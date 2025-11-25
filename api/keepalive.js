@@ -3,11 +3,7 @@ import { Pool } from 'pg'; // Импортируем Pool из 'pg'
 
 // 🔗 Настройка пула для PostgreSQL
 const pgPool = new Pool({
-  host: process.env.PG_HOST,
-  port: process.env.PG_PORT,
-  user: process.env.PG_USER,
-  password: process.env.PG_PASSWORD,
-  database: process.env.PG_NAME,
+  connectionString: process.env.DATABASE_URL,
   ssl: {
       rejectUnauthorized: false // Может понадобиться, если вы используете облачный хостинг с SSL, но не хотите проверять сертификат
   }
